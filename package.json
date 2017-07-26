@@ -1,0 +1,14 @@
+{
+	"name": "ScanditReactNative",
+	"version": "0.0.1",
+	"nativePackage": true,
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {},
+	"devDependencies": {},
+	"peerDependencies": {
+		"react": ">15.4.1",
+		"react-native": ">0.41.2"
+	}
+}
