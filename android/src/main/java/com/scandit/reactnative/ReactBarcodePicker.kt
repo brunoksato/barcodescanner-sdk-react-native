@@ -11,10 +11,12 @@ import com.scandit.barcodepicker.ocr.RecognizedText
 import com.scandit.barcodepicker.ocr.TextRecognitionListener
 import org.json.JSONObject
 import java.nio.charset.Charset
+import java.util.concurrent.CountDownLatch
 
 class ReactBarcodePicker: SimpleViewManager<BarcodePicker>(), OnScanListener, TextRecognitionListener {
 
     var picker: BarcodePicker? = null
+    var latch: CountDownLatch = CountDownLatch(1)
 
     override fun getName(): String {
         return "ReactBarcodePicker"
@@ -40,6 +42,7 @@ class ReactBarcodePicker: SimpleViewManager<BarcodePicker>(), OnScanListener, Te
         map.put("setOverlayProperty", COMMAND_SET_OVERLAY_PROPERTY)
         map.put("setGuiStyle", COMMAND_SET_GUI_STYLE)
         map.put("setTextRecognitionSwitchVisible", COMMAND_SET_TEXT_RECOGNITION_SWITCH_ENABLED)
+        map.put("finishOnScanCallback", COMMAND_FINISH_ON_SCAN_CALLBACK)
         return map
     }
 
@@ -63,6 +66,7 @@ class ReactBarcodePicker: SimpleViewManager<BarcodePicker>(), OnScanListener, Te
             COMMAND_SET_OVERLAY_PROPERTY -> setOverlayProperty(args)
             COMMAND_SET_GUI_STYLE -> setGuiStyle(args)
             COMMAND_SET_TEXT_RECOGNITION_SWITCH_ENABLED -> setTextRecognitionSwitchVisible(args)
+            COMMAND_FINISH_ON_SCAN_CALLBACK -> releaseThread(args)
         }
     }
 
@@ -106,6 +110,7 @@ class ReactBarcodePicker: SimpleViewManager<BarcodePicker>(), OnScanListener, Te
         }
         event.putArray("codes", codes)
         context?.getJSModule(RCTEventEmitter::class.java)?.receiveEvent(picker?.id ?: 0, "onScan", event)
+        latch.await()
     }
 
     override fun didRecognizeText(text: RecognizedText?): Int {
@@ -119,6 +124,15 @@ class ReactBarcodePicker: SimpleViewManager<BarcodePicker>(), OnScanListener, Te
     @ReactProp(name = "scanSettings")
     fun setPropScanSettings(view: BarcodePicker, settingsJson: String ) {
         view.applyScanSettings(ScanSettings.createWithJson(JSONObject(settingsJson)))
+    }
+
+    fun releaseThread(args: ReadableArray?) {
+        if (args?.getBoolean(0) ?: false)
+            picker?.stopScanning()
+        if (args?.getBoolean(1) ?: false)
+            picker?.pauseScanning()
+        latch.countDown()
+        latch = CountDownLatch(1)
     }
 
     fun setScanSettings(args: ReadableArray?) {
