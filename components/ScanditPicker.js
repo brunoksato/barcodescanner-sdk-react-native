@@ -9,6 +9,7 @@ import {
 import { CommandDispatcher } from './CommandDispatcher';
 import { ScanSession } from './ScanSession';
 import { SerializationHelper } from './SerializationHelper';
+import { Barcode } from './Barcode';
 
 var iface = {
   name: 'ReactBarcodePicker',
@@ -40,7 +41,7 @@ export class ScanditPicker extends React.Component {
 		if (!this.props.onScan) {
 			return;
 		}
-		var session = new ScanSession(event.nativeEvent.codes);
+		var session = SerializationHelper.deserializeScanSession(event.nativeEvent);
 		this.props.onScan(session);
 		this.dispatcher.finishOnScanCallback(SerializationHelper.serializeScanSession(session));
 	}

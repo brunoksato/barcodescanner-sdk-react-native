@@ -10,13 +10,13 @@ import com.scandit.barcodepicker.*
 import com.scandit.barcodepicker.ocr.RecognizedText
 import com.scandit.barcodepicker.ocr.TextRecognitionListener
 import org.json.JSONObject
-import java.nio.charset.Charset
 import java.util.concurrent.CountDownLatch
 
 class ReactBarcodePicker: SimpleViewManager<BarcodePicker>(), OnScanListener, TextRecognitionListener {
 
     var picker: BarcodePicker? = null
     var latch: CountDownLatch = CountDownLatch(1)
+    val codesToReject = ArrayList<Int>()
 
     override fun getName(): String {
         return "ReactBarcodePicker"
@@ -66,7 +66,7 @@ class ReactBarcodePicker: SimpleViewManager<BarcodePicker>(), OnScanListener, Te
             COMMAND_SET_OVERLAY_PROPERTY -> setOverlayProperty(args)
             COMMAND_SET_GUI_STYLE -> setGuiStyle(args)
             COMMAND_SET_TEXT_RECOGNITION_SWITCH_ENABLED -> setTextRecognitionSwitchVisible(args)
-            COMMAND_FINISH_ON_SCAN_CALLBACK -> releaseThread(args)
+            COMMAND_FINISH_ON_SCAN_CALLBACK -> finishOnScanCallback(args)
         }
     }
 
@@ -102,15 +102,14 @@ class ReactBarcodePicker: SimpleViewManager<BarcodePicker>(), OnScanListener, Te
     }
 
     override fun didScan(scanSession: ScanSession?) {
-        val event = Arguments.createMap()
-        val codes = Arguments.createArray()
         val context = picker?.context as ReactContext?
-        scanSession?.newlyRecognizedCodes?.forEach { barcode ->
-            codes.pushString(barcode.rawData.toString(Charset.forName("UTF-8")))
-        }
-        event.putArray("codes", codes)
-        context?.getJSModule(RCTEventEmitter::class.java)?.receiveEvent(picker?.id ?: 0, "onScan", event)
+        context?.getJSModule(RCTEventEmitter::class.java)?.receiveEvent(picker?.id ?: 0,
+                "onScan", sessionToMap(scanSession))
         latch.await()
+        for (index in codesToReject) {
+            scanSession?.rejectCode(scanSession.newlyRecognizedCodes[index])
+        }
+        codesToReject.clear()
     }
 
     override fun didRecognizeText(text: RecognizedText?): Int {
@@ -126,11 +125,16 @@ class ReactBarcodePicker: SimpleViewManager<BarcodePicker>(), OnScanListener, Te
         view.applyScanSettings(ScanSettings.createWithJson(JSONObject(settingsJson)))
     }
 
-    fun releaseThread(args: ReadableArray?) {
+    fun finishOnScanCallback(args: ReadableArray?) {
         if (args?.getBoolean(0) ?: false)
             picker?.stopScanning()
         if (args?.getBoolean(1) ?: false)
             picker?.pauseScanning()
+        var index = 0
+        val array = args?.getArray(2)
+        while (index < array?.size() ?: 0) {
+            codesToReject.add(array?.getInt(index++) ?: continue)
+        }
         latch.countDown()
         latch = CountDownLatch(1)
     }
