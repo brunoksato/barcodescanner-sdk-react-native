@@ -1,9 +1,12 @@
 export class ScanSession {
 
-	constructor(scanData) {
-		this.scanData = scanData;
+	constructor(allRecognizedCodes, newlyRecognizedCodes, newlyLocalizedCodes) {
+		this.allRecognizedCodes = allRecognizedCodes;
+		this.newlyRecognizedCodes = newlyRecognizedCodes;
+		this.newlyLocalizedCodes = newlyLocalizedCodes;
 		this.shouldPause = false;
 		this.shouldStop = false;
+		this.rejectedCodes = [];
 	}
 
 	pauseScan() {
@@ -12,6 +15,10 @@ export class ScanSession {
 
 	stopScan() {
 		this.shouldStop = true;
+	}
+
+	rejectCode(barcode) {
+		this.rejectedCodes.push(barcode.id);
 	}
 
 }
