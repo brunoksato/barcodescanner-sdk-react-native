@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A29174A41F3A044A00A9F03F /* SCNBarcodePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A29174A31F3A044A00A9F03F /* SCNBarcodePickerManager.m */; };
+		A29174A41F3A044A00A9F03F /* RCTBarcodePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A29174A31F3A044A00A9F03F /* RCTBarcodePickerManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,9 +23,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A29174961F39FF8600A9F03F /* libScanditBarcodeScanner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libScanditBarcodeScanner.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A29174A21F3A044A00A9F03F /* SCNBarcodePickerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCNBarcodePickerManager.h; sourceTree = "<group>"; };
-		A29174A31F3A044A00A9F03F /* SCNBarcodePickerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCNBarcodePickerManager.m; sourceTree = "<group>"; };
+		A29174961F39FF8600A9F03F /* libRCTScanditBarcodeScanner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTScanditBarcodeScanner.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A29174A21F3A044A00A9F03F /* RCTBarcodePickerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTBarcodePickerManager.h; sourceTree = "<group>"; };
+		A29174A31F3A044A00A9F03F /* RCTBarcodePickerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTBarcodePickerManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +50,7 @@
 		A29174971F39FF8600A9F03F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A29174961F39FF8600A9F03F /* libScanditBarcodeScanner.a */,
+				A29174961F39FF8600A9F03F /* libRCTScanditBarcodeScanner.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -58,8 +58,8 @@
 		A29174981F39FF8600A9F03F /* ScanditBarcodeScanner */ = {
 			isa = PBXGroup;
 			children = (
-				A29174A21F3A044A00A9F03F /* SCNBarcodePickerManager.h */,
-				A29174A31F3A044A00A9F03F /* SCNBarcodePickerManager.m */,
+				A29174A21F3A044A00A9F03F /* RCTBarcodePickerManager.h */,
+				A29174A31F3A044A00A9F03F /* RCTBarcodePickerManager.m */,
 			);
 			path = ScanditBarcodeScanner;
 			sourceTree = "<group>";
@@ -67,9 +67,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A29174951F39FF8600A9F03F /* ScanditBarcodeScanner */ = {
+		A29174951F39FF8600A9F03F /* RCTScanditBarcodeScanner */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A291749F1F39FF8600A9F03F /* Build configuration list for PBXNativeTarget "ScanditBarcodeScanner" */;
+			buildConfigurationList = A291749F1F39FF8600A9F03F /* Build configuration list for PBXNativeTarget "RCTScanditBarcodeScanner" */;
 			buildPhases = (
 				A29174921F39FF8600A9F03F /* Sources */,
 				A29174931F39FF8600A9F03F /* Frameworks */,
@@ -79,9 +79,9 @@
 			);
 			dependencies = (
 			);
-			name = ScanditBarcodeScanner;
+			name = RCTScanditBarcodeScanner;
 			productName = ScanditBarcodeScanner;
-			productReference = A29174961F39FF8600A9F03F /* libScanditBarcodeScanner.a */;
+			productReference = A29174961F39FF8600A9F03F /* libRCTScanditBarcodeScanner.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -100,7 +100,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A29174911F39FF8600A9F03F /* Build configuration list for PBXProject "ScanditBarcodeScanner" */;
+			buildConfigurationList = A29174911F39FF8600A9F03F /* Build configuration list for PBXProject "RCTScanditBarcodeScanner" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -112,7 +112,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A29174951F39FF8600A9F03F /* ScanditBarcodeScanner */,
+				A29174951F39FF8600A9F03F /* RCTScanditBarcodeScanner */,
 			);
 		};
 /* End PBXProject section */
@@ -122,7 +122,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A29174A41F3A044A00A9F03F /* SCNBarcodePickerManager.m in Sources */,
+				A29174A41F3A044A00A9F03F /* RCTBarcodePickerManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,7 +242,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A29174911F39FF8600A9F03F /* Build configuration list for PBXProject "ScanditBarcodeScanner" */ = {
+		A29174911F39FF8600A9F03F /* Build configuration list for PBXProject "RCTScanditBarcodeScanner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A291749D1F39FF8600A9F03F /* Debug */,
@@ -251,7 +251,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A291749F1F39FF8600A9F03F /* Build configuration list for PBXNativeTarget "ScanditBarcodeScanner" */ = {
+		A291749F1F39FF8600A9F03F /* Build configuration list for PBXNativeTarget "RCTScanditBarcodeScanner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A29174A01F39FF8600A9F03F /* Debug */,
