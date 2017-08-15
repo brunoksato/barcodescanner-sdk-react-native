@@ -14,7 +14,7 @@ import { Barcode } from './Barcode';
 var iface = {
   name: 'ReactBarcodePicker',
   propTypes: {
-	  scanSettings: PropTypes.string,
+	  scanSettings: PropTypes.object,
 	  onScan: PropTypes.func,
 	  onSettingsApplied: PropTypes.func,
 	  onTextRecognized: PropTypes.func,
@@ -50,7 +50,7 @@ export class ScanditPicker extends React.Component {
 		if (!this.props.onSettingsApplied) {
 			return;
 		}
-		this.props.onSettingsApplied(event.nativeEvent.settings);
+		this.props.onSettingsApplied(event.nativeEvent);
 	}
 
 	onTextRecognized(event: Event) {

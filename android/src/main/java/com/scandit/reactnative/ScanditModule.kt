@@ -7,9 +7,7 @@ import com.scandit.barcodepicker.ScanditLicense
 
 class ScanditModule(reactContext: ReactApplicationContext?) : ReactContextBaseJavaModule(reactContext)  {
 
-    override fun getName(): String {
-        return "ScanditModule"
-    }
+    override fun getName(): String = "ScanditModule"
 
     @ReactMethod
     fun setAppKey(key: String) {

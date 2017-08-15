@@ -28,10 +28,10 @@ export class CommandDispatcher {
       this.pickerViewHandle, UIManager.ReactBarcodePicker.Commands.pauseScan, null);
   }
 
-  applySettings(settingsJSON) {
+  applySettings(scanSettings) {
     UIManager.dispatchViewManagerCommand(
       this.pickerViewHandle,
-      UIManager.ReactBarcodePicker.Commands.applySettings, [settingsJSON]);
+      UIManager.ReactBarcodePicker.Commands.applySettings, [scanSettings]);
   }
 
   finishOnScanCallback(session) {

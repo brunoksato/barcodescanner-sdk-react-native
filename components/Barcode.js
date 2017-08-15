@@ -1,4 +1,8 @@
-export const CompositeFlag = {
+export class Barcode {
+
+}
+
+Barcode.CompositeFlag = {
   NONE: 0,
   UNKNOWN: 1,
   LINKED: 2,
@@ -7,7 +11,7 @@ export const CompositeFlag = {
   GS1_TYPE_C: 5
 }
 
-export const Symbology = {
+Barcode.Symbology = {
   UNKNOWN: "unknown",
 	EAN13: "ean13",
 	EAN8: "ean8",
@@ -35,8 +39,4 @@ export const Symbology = {
 	TWO_DIGIT_ADD_ON: "two-digit-add-on",
 	KIX: "kix",
 	RM4SCC: "rm4scc"
-}
-
-export class Barcode {
-
 }
