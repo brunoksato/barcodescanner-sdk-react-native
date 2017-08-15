@@ -84,7 +84,7 @@ fun quadrilateralToMap(quadrilateral: Quadrilateral?): WritableMap {
 fun ReadableArray.toJson(): JSONArray {
     val jsonArray = JSONArray()
 
-    loop@ for (i in 0 until this.size()) {
+    for (i in 0 until this.size()) {
 
         when (this.getType(i)) {
             ReadableType.Null -> jsonArray.put(JSONObject.NULL)
@@ -93,7 +93,7 @@ fun ReadableArray.toJson(): JSONArray {
             ReadableType.String -> jsonArray.put(this.getString(i))
             ReadableType.Map -> jsonArray.put(this.getMap(i).toJson())
             ReadableType.Array -> jsonArray.put(this.getArray(i).toJson())
-            else -> continue@loop
+            else -> {}
         }
     }
 
@@ -104,7 +104,7 @@ fun ReadableMap.toJson(): JSONObject {
     val jsonObject = JSONObject()
     val iterator = this.keySetIterator()
 
-    loop@ while (iterator.hasNextKey()) {
+    while (iterator.hasNextKey()) {
         val key = iterator.nextKey()
 
         when (this.getType(key)) {
@@ -114,7 +114,7 @@ fun ReadableMap.toJson(): JSONObject {
             ReadableType.String -> jsonObject.put(key, this.getString(key))
             ReadableType.Map -> jsonObject.put(key, this.getMap(key).toJson())
             ReadableType.Array -> jsonObject.put(key, this.getArray(key).toJson())
-            else -> continue@loop
+            else -> {}
         }
     }
 
