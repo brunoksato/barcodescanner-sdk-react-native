@@ -1,0 +1,5 @@
+rootProject.name = 'SimpleSample'
+include ':scandit-react-native'
+project(':scandit-react-native').projectDir = new File(rootProject.projectDir, '../node_modules/scandit-react-native/android')
+
+include ':app'

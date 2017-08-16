@@ -1,0 +1,18 @@
+{
+	"name": "SimpleSample",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node node_modules/react-native/local-cli/cli.js start",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"react": "16.0.0-alpha.12",
+		"react-native": "0.47.1",
+		"scandit-react-native": "git+ssh://git@gitlab.scandit.com:mobile/react-native.git"
+	},
+	"devDependencies": {
+		"babel-preset-react-native": "2.1.0",
+		"react-test-renderer": "16.0.0-alpha.12"
+	}
+}
