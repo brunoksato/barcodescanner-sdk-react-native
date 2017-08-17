@@ -59,6 +59,12 @@ export class CommandDispatcher {
       UIManager.ReactBarcodePicker.Commands.setTorchEnabled, [isEnabled]);
   }
 
+  setCameraSwitchVisibility(visibility) {
+    UIManager.dispatchViewManagerCommand(
+      this.pickerViewHandle,
+      UIManager.ReactBarcodePicker.Commands.setCameraSwitchVisibility, [visibility]);
+  }
+
   setTextRecognitionSwitchVisible(isVisible) {
     UIManager.dispatchViewManagerCommand(
       this.pickerViewHandle,
@@ -83,16 +89,34 @@ export class CommandDispatcher {
       UIManager.ReactBarcodePicker.Commands.setCameraSwitchMarginsAndSize, [leftMargin, topMargin, width, height]);
   }
 
-  setViewfinderColor(red, green, blue) {
+  setViewfinderColor(color) {
     UIManager.dispatchViewManagerCommand(
       this.pickerViewHandle,
-      UIManager.ReactBarcodePicker.Commands.setViewfinderColor, [red, green, blue]);
+      UIManager.ReactBarcodePicker.Commands.setViewfinderColor, [color]);
   }
 
-  setViewfinderDecodedColor(red, green, blue) {
+  setViewfinderDecodedColor(color) {
     UIManager.dispatchViewManagerCommand(
       this.pickerViewHandle,
-      UIManager.ReactBarcodePicker.Commands.setViewfinderDecodedColor, [red, green, blue]);
+      UIManager.ReactBarcodePicker.Commands.setViewfinderDecodedColor, [color]);
+  }
+
+  setMatrixScanHighlightingColor(state, color) {
+    UIManager.dispatchViewManagerCommand(
+      this.pickerViewHandle,
+      UIManager.ReactBarcodePicker.Commands.setMatrixScanHighlightingColor, [state, color]);
+  }
+
+  setOverlayProperty(propName, propValue) {
+    UIManager.dispatchViewManagerCommand(
+      this.pickerViewHandle,
+      UIManager.ReactBarcodePicker.Commands.setOverlayProperty, [propName, propValue]);
+  }
+
+  setGuiStyle(style) {
+    UIManager.dispatchViewManagerCommand(
+      this.pickerViewHandle,
+      UIManager.ReactBarcodePicker.Commands.setGuiStyle, [style]);
   }
 
 }

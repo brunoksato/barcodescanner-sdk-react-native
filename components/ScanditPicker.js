@@ -4,7 +4,8 @@ import {
 	requireNativeComponent,
 	findNodeHandle,
 	View,
-	UIManager
+	UIManager,
+	processColor
 } from 'react-native';
 import { CommandDispatcher } from './CommandDispatcher';
 import { ScanSession } from './ScanSession';
@@ -101,6 +102,10 @@ export class ScanditPicker extends React.Component {
 		this.dispatcher.setTorchEnabled(isEnabled);
 	}
 
+	setCameraSwitchVisibility(visibility) {
+		this.dispatcher.setCameraSwitchVisibility(visibility);
+	}
+
 	setTextRecognitionSwitchVisible(isVisible) {
 		this.dispatcher.setTextRecognitionSwitchVisible(isVisible);
 	}
@@ -117,12 +122,24 @@ export class ScanditPicker extends React.Component {
 		this.dispatcher.setCameraSwitchMarginsAndSize(leftMargin, topMargin, width, height);
 	}
 
-	setViewfinderColor(red, green, blue) {
-		this.dispatcher.setViewfinderColor(red, green, blue);
+	setViewfinderColor(color) {
+		this.dispatcher.setViewfinderColor(processColor(color));
 	}
 
-	setViewfinderDecodedColor(red, green, blue) {
-		this.dispatcher.setViewfinderDecodedColor(red, green, blue);
+	setViewfinderDecodedColor(color) {
+		this.dispatcher.setViewfinderDecodedColor(processColor(color));
+	}
+
+	setMatrixScanHighlightingColor(state, color) {
+		this.dispatcher.setMatrixScanHighlightingColor(state, processColor(color));
+	}
+
+	setOverlayProperty(propName, propValue) {
+		this.dispatcher.setOverlayProperty(propName, propValue);
+	}
+
+	setGuiStyle(style) {
+		this.dispatcher.setGuiStyle(style);
 	}
 
 }
