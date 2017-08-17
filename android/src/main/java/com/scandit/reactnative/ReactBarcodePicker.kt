@@ -1,5 +1,6 @@
 package com.scandit.reactnative
 
+import android.graphics.Color
 import com.facebook.react.bridge.*
 import com.facebook.react.common.MapBuilder
 import com.facebook.react.uimanager.SimpleViewManager
@@ -31,11 +32,11 @@ class ReactBarcodePicker: SimpleViewManager<BarcodePicker>(), OnScanListener, Te
         map.put("setVibrateEnabled", COMMAND_VIBRATE_ENABLED)
         map.put("setBeepEnabled", COMMAND_BEEP_ENABLED)
         map.put("setTorchMarginsAndSize", COMMAND_TORCH_MARGINS_AND_SIZE)
-        map.put("setCameraSwitchEnabled", COMMAND_CAMERA_SWITCH_ENABLED)
+        map.put("setCameraSwitchVisibility", COMMAND_CAMERA_SWITCH_VISIBILITY)
         map.put("setCameraSwitchMarginsAndSize", COMMAND_CAMERA_SWITCH_MARGINS_AND_SIZE)
         map.put("setViewfinderColor", COMMAND_VIEWFINDER_COLOR)
         map.put("setViewfinderDecodedColor", COMMAND_VIEWFINDER_DECODED_COLOR)
-        map.put("setMatrixScanColor", COMMAND_MATRIX_SCAN_COLOR)
+        map.put("setMatrixScanHighlightingColor", COMMAND_MATRIX_HIGHLIGHT_COLOR)
         map.put("setOverlayProperty", COMMAND_SET_OVERLAY_PROPERTY)
         map.put("setGuiStyle", COMMAND_SET_GUI_STYLE)
         map.put("setTextRecognitionSwitchVisible", COMMAND_SET_TEXT_RECOGNITION_SWITCH_ENABLED)
@@ -55,11 +56,11 @@ class ReactBarcodePicker: SimpleViewManager<BarcodePicker>(), OnScanListener, Te
             COMMAND_VIBRATE_ENABLED -> setVibrateEnabled(args)
             COMMAND_BEEP_ENABLED -> setBeepEnabled(args)
             COMMAND_TORCH_MARGINS_AND_SIZE -> setTorchMarginsSize(args)
-            COMMAND_CAMERA_SWITCH_ENABLED -> setCameraSwitchEnabled(args)
+            COMMAND_CAMERA_SWITCH_VISIBILITY -> setCameraSwitchVisibility(args)
             COMMAND_CAMERA_SWITCH_MARGINS_AND_SIZE -> setCameraSwitchMarginsSize(args)
             COMMAND_VIEWFINDER_COLOR -> setViewfinderColor(args)
             COMMAND_VIEWFINDER_DECODED_COLOR -> setViewfinderDecodedColor(args)
-            COMMAND_MATRIX_SCAN_COLOR -> setMatrixScanColor(args)
+            COMMAND_MATRIX_HIGHLIGHT_COLOR -> setMatrixScanHighlightingColor(args)
             COMMAND_SET_OVERLAY_PROPERTY -> setOverlayProperty(args)
             COMMAND_SET_GUI_STYLE -> setGuiStyle(args)
             COMMAND_SET_TEXT_RECOGNITION_SWITCH_ENABLED -> setTextRecognitionSwitchVisible(args)
@@ -172,7 +173,7 @@ class ReactBarcodePicker: SimpleViewManager<BarcodePicker>(), OnScanListener, Te
         picker?.overlayView?.setBeepEnabled(args?.getBoolean(0) ?: false)
     }
 
-    private fun setCameraSwitchEnabled(args: ReadableArray?) {
+    private fun setCameraSwitchVisibility(args: ReadableArray?) {
         picker?.overlayView?.setCameraSwitchVisibility(args?.getInt(0) ?: ScanOverlay.CAMERA_SWITCH_NEVER)
     }
 
@@ -183,20 +184,16 @@ class ReactBarcodePicker: SimpleViewManager<BarcodePicker>(), OnScanListener, Te
     }
 
     private fun setViewfinderColor(args: ReadableArray?) {
-        picker?.overlayView?.setViewfinderColor(
-                args?.getDouble(0)?.toFloat() ?: 1f, args?.getDouble(1)?.toFloat() ?: 1f,
-                args?.getDouble(2)?.toFloat() ?: 1f
-        )
+        val colorInt = args?.getInt(0) ?: Color.WHITE
+        picker?.overlayView?.setViewfinderColor(Color.red(colorInt) / 255f, Color.green(colorInt) / 255f, Color.blue(colorInt) / 255f)
     }
 
     private fun setViewfinderDecodedColor(args: ReadableArray?) {
-        picker?.overlayView?.setViewfinderDecodedColor(
-                args?.getDouble(0)?.toFloat() ?: 1f, args?.getDouble(1)?.toFloat() ?: 1f,
-                args?.getDouble(2)?.toFloat() ?: 1f
-        )
+        val colorInt = args?.getInt(0) ?: Color.GREEN
+        picker?.overlayView?.setViewfinderDecodedColor(Color.red(colorInt) / 255f, Color.green(colorInt) / 255f, Color.blue(colorInt) / 255f)
     }
 
-    private fun setMatrixScanColor(args: ReadableArray?) {
+    private fun setMatrixScanHighlightingColor(args: ReadableArray?) {
         picker?.overlayView?.setMatrixScanHighlightingColor(
                 args?.getInt(0) ?: 0, args?.getInt(1) ?: 0
         )
@@ -207,6 +204,12 @@ class ReactBarcodePicker: SimpleViewManager<BarcodePicker>(), OnScanListener, Te
     }
 
     private fun setOverlayProperty(args: ReadableArray?) {
-        picker?.overlayView?.setProperty(args?.getString(0), args?.getType(1))
+        val propValue: Any? = when (args?.getType(1)) {
+            ReadableType.Boolean -> args.getBoolean(1)
+            ReadableType.String -> args.getString(1)
+            ReadableType.Number -> args.getDouble(1)
+            else -> null
+        }
+        picker?.overlayView?.setProperty(args?.getString(0), propValue)
     }
 }
