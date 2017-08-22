@@ -1,5 +1,5 @@
 //
-//  RCTBarcodePickerManager.h
+//  SCNBarcodePickerManager.h
 //  ScanditBarcodeScanner
 //
 //  Created by Luca Torella on 08.08.17.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <React/RCTViewManager.h>
 
-@interface RCTBarcodePickerManager : RCTViewManager
+@interface SCNBarcodePickerManager : RCTViewManager
 
 @end

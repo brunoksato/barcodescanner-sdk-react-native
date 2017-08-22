@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A29174A41F3A044A00A9F03F /* RCTBarcodePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A29174A31F3A044A00A9F03F /* RCTBarcodePickerManager.m */; };
+		A20A034A1F45A01E00F5AED3 /* RCTConvert+Scandit.m in Sources */ = {isa = PBXBuildFile; fileRef = A20A03491F45A01E00F5AED3 /* RCTConvert+Scandit.m */; };
+		A25273EA1F41BEF5005877F4 /* SCNScanditModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A25273E91F41BEF5005877F4 /* SCNScanditModule.m */; };
+		A25273EB1F41BF88005877F4 /* SCNBarcodePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A25273E31F41ABB1005877F4 /* SCNBarcodePicker.m */; };
+		A25273EC1F41BF8A005877F4 /* SCNBarcodePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A25273E11F41ABB1005877F4 /* SCNBarcodePickerManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,9 +26,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A20A03481F45A01E00F5AED3 /* RCTConvert+Scandit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTConvert+Scandit.h"; sourceTree = "<group>"; };
+		A20A03491F45A01E00F5AED3 /* RCTConvert+Scandit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTConvert+Scandit.m"; sourceTree = "<group>"; };
+		A25273E11F41ABB1005877F4 /* SCNBarcodePickerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCNBarcodePickerManager.m; sourceTree = "<group>"; };
+		A25273E21F41ABB1005877F4 /* SCNBarcodePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCNBarcodePicker.h; sourceTree = "<group>"; };
+		A25273E31F41ABB1005877F4 /* SCNBarcodePicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCNBarcodePicker.m; sourceTree = "<group>"; };
+		A25273E41F41ABB1005877F4 /* SCNBarcodePickerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCNBarcodePickerManager.h; sourceTree = "<group>"; };
+		A25273E81F41BEF5005877F4 /* SCNScanditModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCNScanditModule.h; sourceTree = "<group>"; };
+		A25273E91F41BEF5005877F4 /* SCNScanditModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCNScanditModule.m; sourceTree = "<group>"; };
 		A29174961F39FF8600A9F03F /* libRCTScanditBarcodeScanner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTScanditBarcodeScanner.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A29174A21F3A044A00A9F03F /* RCTBarcodePickerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTBarcodePickerManager.h; sourceTree = "<group>"; };
-		A29174A31F3A044A00A9F03F /* RCTBarcodePickerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTBarcodePickerManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +67,14 @@
 		A29174981F39FF8600A9F03F /* ScanditBarcodeScanner */ = {
 			isa = PBXGroup;
 			children = (
-				A29174A21F3A044A00A9F03F /* RCTBarcodePickerManager.h */,
-				A29174A31F3A044A00A9F03F /* RCTBarcodePickerManager.m */,
+				A25273E81F41BEF5005877F4 /* SCNScanditModule.h */,
+				A25273E91F41BEF5005877F4 /* SCNScanditModule.m */,
+				A25273E21F41ABB1005877F4 /* SCNBarcodePicker.h */,
+				A25273E31F41ABB1005877F4 /* SCNBarcodePicker.m */,
+				A25273E41F41ABB1005877F4 /* SCNBarcodePickerManager.h */,
+				A25273E11F41ABB1005877F4 /* SCNBarcodePickerManager.m */,
+				A20A03481F45A01E00F5AED3 /* RCTConvert+Scandit.h */,
+				A20A03491F45A01E00F5AED3 /* RCTConvert+Scandit.m */,
 			);
 			path = ScanditBarcodeScanner;
 			sourceTree = "<group>";
@@ -122,7 +137,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A29174A41F3A044A00A9F03F /* RCTBarcodePickerManager.m in Sources */,
+				A25273EC1F41BF8A005877F4 /* SCNBarcodePickerManager.m in Sources */,
+				A25273EB1F41BF88005877F4 /* SCNBarcodePicker.m in Sources */,
+				A20A034A1F45A01E00F5AED3 /* RCTConvert+Scandit.m in Sources */,
+				A25273EA1F41BEF5005877F4 /* SCNScanditModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,6 +241,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = CCJEHQ4M9R;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../ScanditSDK",
+					"$(PROJECT_DIR)/../../../ios/ScanditSDK",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -233,6 +255,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = CCJEHQ4M9R;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../ScanditSDK",
+					"$(PROJECT_DIR)/../../../ios/ScanditSDK",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
