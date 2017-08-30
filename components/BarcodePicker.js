@@ -13,7 +13,7 @@ import { SerializationHelper } from './SerializationHelper';
 import { Barcode } from './Barcode';
 
 var iface = {
-  name: 'ReactBarcodePicker',
+  name: 'BarcodePicker',
   propTypes: {
 	  scanSettings: PropTypes.object,
 	  onScan: PropTypes.func,
@@ -23,9 +23,9 @@ var iface = {
   }
 };
 
-var ReactBarcodePicker = requireNativeComponent('ReactBarcodePicker', iface);
+var ReactBarcodePicker = requireNativeComponent('BarcodePicker', iface);
 
-export class ScanditPicker extends React.Component {
+export class BarcodePicker extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -70,20 +70,20 @@ export class ScanditPicker extends React.Component {
 				ref = {(scan) => {this.reference = scan}} />;
 	}
 
-	startScan() {
-		this.dispatcher.startScan();
+	startScanning() {
+		this.dispatcher.startScanning();
 	}
 
-	stopScan() {
-		this.dispatcher.stopScan();
+	stopScanning() {
+		this.dispatcher.stopScanning();
 	}
 
-	resumeScan() {
-		this.dispatcher.resumeScan();
+	resumeScanning() {
+		this.dispatcher.resumeScanning();
 	}
 
-	pauseScan() {
-		this.dispatcher.pauseScan();
+	pauseScanning() {
+		this.dispatcher.pauseScanning();
 	}
 
 	setBeepEnabled(isEnabled) {

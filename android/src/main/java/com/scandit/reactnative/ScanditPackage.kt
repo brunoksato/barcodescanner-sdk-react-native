@@ -17,7 +17,7 @@ class ScanditPackage : ReactPackage {
 
     override fun createViewManagers(reactContext: ReactApplicationContext?): MutableList<SimpleViewManager<View>> {
         val managers = ArrayList<SimpleViewManager<View>>()
-        managers.add(ReactBarcodePicker() as SimpleViewManager<View>)
+        managers.add(BarcodePicker() as SimpleViewManager<View>)
         return managers
     }
 }

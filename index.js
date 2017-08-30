@@ -2,7 +2,7 @@ import {
 	NativeModules
 } from 'react-native';
 export { ScanSession } from './components/ScanSession';
-export { ScanditPicker } from './components/ScanditPicker';
+export { BarcodePicker } from './components/BarcodePicker';
 export { Barcode } from './components/Barcode';
 export { ScanSettings } from './components/ScanSettings';
 export { SymbologySettings } from './components/SymbologySettings';
