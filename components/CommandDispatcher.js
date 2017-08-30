@@ -8,115 +8,115 @@ export class CommandDispatcher {
     this.pickerViewHandle = viewHandle;
   }
 
-  startScan() {
+  startScanning() {
     UIManager.dispatchViewManagerCommand(
-      this.pickerViewHandle, UIManager.ReactBarcodePicker.Commands.startScan, null);
+      this.pickerViewHandle, UIManager.BarcodePicker.Commands.startScanning, null);
   }
 
-  stopScan() {
+  stopScanning() {
     UIManager.dispatchViewManagerCommand(
-      this.pickerViewHandle, UIManager.ReactBarcodePicker.Commands.stopScan, null);
+      this.pickerViewHandle, UIManager.BarcodePicker.Commands.stopScanning, null);
   }
 
-  resumeScan() {
+  resumeScanning() {
     UIManager.dispatchViewManagerCommand(
-      this.pickerViewHandle, UIManager.ReactBarcodePicker.Commands.resumeScan, null);
+      this.pickerViewHandle, UIManager.BarcodePicker.Commands.resumeScanning, null);
   }
 
-  pauseScan() {
+  pauseScanning() {
     UIManager.dispatchViewManagerCommand(
-      this.pickerViewHandle, UIManager.ReactBarcodePicker.Commands.pauseScan, null);
+      this.pickerViewHandle, UIManager.BarcodePicker.Commands.pauseScanning, null);
   }
 
   applySettings(scanSettings) {
     UIManager.dispatchViewManagerCommand(
       this.pickerViewHandle,
-      UIManager.ReactBarcodePicker.Commands.applySettings, [scanSettings]);
+      UIManager.BarcodePicker.Commands.applySettings, [scanSettings]);
   }
 
   finishOnScanCallback(session) {
     UIManager.dispatchViewManagerCommand(
       this.pickerViewHandle,
-      UIManager.ReactBarcodePicker.Commands.finishOnScanCallback,
+      UIManager.BarcodePicker.Commands.finishOnScanCallback,
       session);
   }
 
   setBeepEnabled(isEnabled) {
     UIManager.dispatchViewManagerCommand(
       this.pickerViewHandle,
-      UIManager.ReactBarcodePicker.Commands.setBeepEnabled, [isEnabled]);
+      UIManager.BarcodePicker.Commands.setBeepEnabled, [isEnabled]);
   }
 
   setVibrateEnabled(isEnabled) {
     UIManager.dispatchViewManagerCommand(
       this.pickerViewHandle,
-      UIManager.ReactBarcodePicker.Commands.setVibrateEnabled, [isEnabled]);
+      UIManager.BarcodePicker.Commands.setVibrateEnabled, [isEnabled]);
   }
 
   setTorchEnabled(isEnabled) {
     UIManager.dispatchViewManagerCommand(
       this.pickerViewHandle,
-      UIManager.ReactBarcodePicker.Commands.setTorchEnabled, [isEnabled]);
+      UIManager.BarcodePicker.Commands.setTorchEnabled, [isEnabled]);
   }
 
   setCameraSwitchVisibility(visibility) {
     UIManager.dispatchViewManagerCommand(
       this.pickerViewHandle,
-      UIManager.ReactBarcodePicker.Commands.setCameraSwitchVisibility, [visibility]);
+      UIManager.BarcodePicker.Commands.setCameraSwitchVisibility, [visibility]);
   }
 
   setTextRecognitionSwitchVisible(isVisible) {
     UIManager.dispatchViewManagerCommand(
       this.pickerViewHandle,
-      UIManager.ReactBarcodePicker.Commands.setTextRecognitionSwitchVisible, [isVisible]);
+      UIManager.BarcodePicker.Commands.setTextRecognitionSwitchVisible, [isVisible]);
   }
 
   setViewfinderDimension(x, y, width, height) {
     UIManager.dispatchViewManagerCommand(
       this.pickerViewHandle,
-      UIManager.ReactBarcodePicker.Commands.setViewfinderDimension, [x, y, width, height]);
+      UIManager.BarcodePicker.Commands.setViewfinderDimension, [x, y, width, height]);
   }
 
   setTorchMarginsAndSize(leftMargin, topMargin, width, height) {
     UIManager.dispatchViewManagerCommand(
       this.pickerViewHandle,
-      UIManager.ReactBarcodePicker.Commands.setTorchMarginsAndSize, [leftMargin, topMargin, width, height]);
+      UIManager.BarcodePicker.Commands.setTorchMarginsAndSize, [leftMargin, topMargin, width, height]);
   }
 
   setCameraSwitchMarginsAndSize(leftMargin, topMargin, width, height) {
     UIManager.dispatchViewManagerCommand(
       this.pickerViewHandle,
-      UIManager.ReactBarcodePicker.Commands.setCameraSwitchMarginsAndSize, [leftMargin, topMargin, width, height]);
+      UIManager.BarcodePicker.Commands.setCameraSwitchMarginsAndSize, [leftMargin, topMargin, width, height]);
   }
 
   setViewfinderColor(color) {
     UIManager.dispatchViewManagerCommand(
       this.pickerViewHandle,
-      UIManager.ReactBarcodePicker.Commands.setViewfinderColor, [color]);
+      UIManager.BarcodePicker.Commands.setViewfinderColor, [color]);
   }
 
   setViewfinderDecodedColor(color) {
     UIManager.dispatchViewManagerCommand(
       this.pickerViewHandle,
-      UIManager.ReactBarcodePicker.Commands.setViewfinderDecodedColor, [color]);
+      UIManager.BarcodePicker.Commands.setViewfinderDecodedColor, [color]);
   }
 
   setMatrixScanHighlightingColor(state, color) {
     UIManager.dispatchViewManagerCommand(
       this.pickerViewHandle,
-      UIManager.ReactBarcodePicker.Commands.setMatrixScanHighlightingColor, [state, color]);
+      UIManager.BarcodePicker.Commands.setMatrixScanHighlightingColor, [state, color]);
   }
 
   setOverlayProperty(propName, propValue) {
     UIManager.dispatchViewManagerCommand(
       this.pickerViewHandle,
-      UIManager.ReactBarcodePicker.Commands.setOverlayProperty, [propName, propValue]);
+      UIManager.BarcodePicker.Commands.setOverlayProperty, [propName, propValue]);
   }
 
   setGuiStyle(style) {
     UIManager.dispatchViewManagerCommand(
       this.pickerViewHandle,
-      UIManager.ReactBarcodePicker.Commands.setGuiStyle, [style]);
+      UIManager.BarcodePicker.Commands.setGuiStyle, [style]);
   }
 
 }

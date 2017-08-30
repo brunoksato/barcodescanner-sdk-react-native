@@ -7,13 +7,13 @@ import {
   View
 } from 'react-native';
 import {
-  ScanditPicker,
+  BarcodePicker,
   ScanditModule,
   ScanSession,
   Barcode,
   SymbologySettings,
   ScanSettings
-} from 'scandit-react-native';
+} from 'react-native-scandit';
 
 ScanditModule.setAppKey('-- ENTER YOUR SCANDIT LICENSE KEY HERE --');
 
@@ -44,7 +44,7 @@ export default class SimpleSample extends Component {
 
   componentDidMount() {
     this.pickerViewHandle = findNodeHandle(this.scanner);
-    this.scanner.startScan();
+    this.scanner.startScanning();
   }
 
   render() {
@@ -52,7 +52,7 @@ export default class SimpleSample extends Component {
       <View style={{
 			flex: 1,
 			flexDirection: 'column'}}>
-			<ScanditPicker
+			<BarcodePicker
 				onScan={(session) => { this.onScan(session) }}
 				scanSettings= { this.settings }
         ref={(scan) => { this.scanner = scan }}

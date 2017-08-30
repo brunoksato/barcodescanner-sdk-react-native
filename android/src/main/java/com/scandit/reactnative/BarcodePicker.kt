@@ -8,24 +8,25 @@ import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
 import com.facebook.react.uimanager.events.RCTEventEmitter
 import com.scandit.barcodepicker.*
+import com.scandit.barcodepicker.BarcodePicker
 import com.scandit.barcodepicker.ocr.RecognizedText
 import com.scandit.barcodepicker.ocr.TextRecognitionListener
 import java.util.concurrent.CountDownLatch
 
-class ReactBarcodePicker: SimpleViewManager<BarcodePicker>(), OnScanListener, TextRecognitionListener {
+class BarcodePicker : SimpleViewManager<BarcodePicker>(), OnScanListener, TextRecognitionListener {
 
     private var picker: BarcodePicker? = null
     private var latch: CountDownLatch = CountDownLatch(1)
     private val codesToReject = ArrayList<Int>()
 
-    override fun getName(): String = "ReactBarcodePicker"
+    override fun getName(): String = "BarcodePicker"
 
     override fun getCommandsMap(): MutableMap<String, Int> {
         val map = MapBuilder.newHashMap<String, Int>()
-        map.put("startScan", COMMAND_START_SCANNING)
-        map.put("stopScan", COMMAND_STOP_SCANNING)
-        map.put("resumeScan", COMMAND_RESUME_SCANNING)
-        map.put("pauseScan", COMMAND_PAUSE_SCANNING)
+        map.put("startScanning", COMMAND_START_SCANNING)
+        map.put("stopScanning", COMMAND_STOP_SCANNING)
+        map.put("resumeScanning", COMMAND_RESUME_SCANNING)
+        map.put("pauseScanning", COMMAND_PAUSE_SCANNING)
         map.put("applySettings", COMMAND_APPLY_SETTINGS)
         map.put("setViewfinderDimension", COMMAND_VIEWFINDER_DIMENSION)
         map.put("setTorchEnabled", COMMAND_TORCH_ENABLED)
