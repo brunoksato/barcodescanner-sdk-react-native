@@ -1,5 +1,4 @@
-# barcodescanner-sdk-react-native
-
+# Scandit Barcode Scanner SDK Plugin for React Native
 
 License
 -------
