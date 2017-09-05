@@ -18,7 +18,7 @@
 
 @implementation SCNBarcodePickerManager
 
-RCT_EXPORT_MODULE(ReactBarcodePicker)
+RCT_EXPORT_MODULE(BarcodePicker)
 
 -(dispatch_queue_t)methodQueue {
     return dispatch_get_main_queue();
@@ -33,7 +33,7 @@ RCT_EXPORT_VIEW_PROPERTY(onScan, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onTextRecognized, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onSettingsApplied, RCTBubblingEventBlock)
 
-RCT_EXPORT_METHOD(startScan:(nonnull NSNumber *)reactTag) {
+RCT_EXPORT_METHOD(startScanning:(nonnull NSNumber *)reactTag) {
     [self.bridge.uiManager addUIBlock:
      ^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
          id view = viewRegistry[reactTag];
@@ -45,7 +45,7 @@ RCT_EXPORT_METHOD(startScan:(nonnull NSNumber *)reactTag) {
      }];
 }
 
-RCT_EXPORT_METHOD(stopScan:(nonnull NSNumber *)reactTag) {
+RCT_EXPORT_METHOD(stopScanning:(nonnull NSNumber *)reactTag) {
     [self.bridge.uiManager addUIBlock:
      ^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
          id view = viewRegistry[reactTag];
@@ -57,7 +57,7 @@ RCT_EXPORT_METHOD(stopScan:(nonnull NSNumber *)reactTag) {
      }];
 }
 
-RCT_EXPORT_METHOD(pauseScan:(nonnull NSNumber *)reactTag) {
+RCT_EXPORT_METHOD(pauseScanning:(nonnull NSNumber *)reactTag) {
     [self.bridge.uiManager addUIBlock:
      ^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
          id view = viewRegistry[reactTag];
@@ -69,7 +69,7 @@ RCT_EXPORT_METHOD(pauseScan:(nonnull NSNumber *)reactTag) {
      }];
 }
 
-RCT_EXPORT_METHOD(resumeScan:(nonnull NSNumber *)reactTag) {
+RCT_EXPORT_METHOD(resumeScanning:(nonnull NSNumber *)reactTag) {
     [self.bridge.uiManager addUIBlock:
      ^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
          id view = viewRegistry[reactTag];
