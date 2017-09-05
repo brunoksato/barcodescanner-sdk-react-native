@@ -20,4 +20,8 @@
 @property (nonatomic, copy, nullable) RCTBubblingEventBlock onTextRecognized;
 @property (nonatomic, copy, nullable) RCTBubblingEventBlock onSettingsApplied;
 
+- (void)finishOnScanCallbackShouldStop:(BOOL)shouldStop
+                           shouldPause:(BOOL)shouldPause
+                         codesToReject:(nullable NSArray<NSNumber *> *)codesToReject;
+
 @end

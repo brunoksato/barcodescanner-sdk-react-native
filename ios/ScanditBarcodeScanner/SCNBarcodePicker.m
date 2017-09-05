@@ -12,6 +12,11 @@
 
 @interface SCNBarcodePicker () <SBSScanDelegate>
 
+@property (nonatomic) BOOL shouldStop;
+@property (nonatomic) BOOL shouldPause;
+@property (nonatomic, nullable) NSArray<NSNumber *> *codesToReject;
+@property (nonatomic) dispatch_semaphore_t didScanSemaphore;
+
 @end
 
 @implementation SCNBarcodePicker
@@ -22,6 +27,7 @@
     if (self) {
         _picker = [[SBSBarcodePicker alloc] initWithSettings:[SBSScanSettings defaultSettings]];
         _picker.scanDelegate = self;
+        _didScanSemaphore = dispatch_semaphore_create(0);
         [self addSubview:_picker.view];
     }
     return self;
@@ -44,15 +50,17 @@
 static inline NSDictionary<NSString *, id> *dictionaryFromScanSession(SBSScanSession *session) {
     NSMutableArray *allRecognizedCodes = [NSMutableArray arrayWithCapacity:session.allRecognizedCodes.count];
     for (SBSCode *code in session.allRecognizedCodes) {
-        [allRecognizedCodes addObject:dictionaryFromCode(code)];
+        [allRecognizedCodes addObject:dictionaryFromCode(code, nil)];
     }
     NSMutableArray *newlyLocalizedCodes = [NSMutableArray arrayWithCapacity:session.newlyLocalizedCodes.count];
     for (SBSCode *code in session.newlyLocalizedCodes) {
-        [newlyLocalizedCodes addObject:dictionaryFromCode(code)];
+        [newlyLocalizedCodes addObject:dictionaryFromCode(code, nil)];
     }
     NSMutableArray *newlyRecognizedCodes = [NSMutableArray arrayWithCapacity:session.newlyRecognizedCodes.count];
+    int i = 0;
     for (SBSCode *code in session.newlyRecognizedCodes) {
-        [newlyRecognizedCodes addObject:dictionaryFromCode(code)];
+        [newlyRecognizedCodes addObject:dictionaryFromCode(code, @(i))];
+        i++;
     }
     return @{
              @"allRecognizedCodes": allRecognizedCodes,
@@ -61,7 +69,7 @@ static inline NSDictionary<NSString *, id> *dictionaryFromScanSession(SBSScanSes
              };
 }
 
-static NSDictionary<NSString *, id> *dictionaryFromCode(SBSCode *code) {
+static NSDictionary<NSString *, id> *dictionaryFromCode(SBSCode *code, NSNumber *identifier) {
     NSMutableArray<NSNumber *> *bytesArray = [NSMutableArray arrayWithCapacity:code.rawData.length];
     if (code.rawData != nil) {
         unsigned char *bytes = (unsigned char *)[code.rawData bytes];
@@ -71,6 +79,7 @@ static NSDictionary<NSString *, id> *dictionaryFromCode(SBSCode *code) {
     }
 
     return @{
+             @"id": identifier ?: @(-1),
              @"rawData": bytesArray,
              @"data": code.data ?: @"",
              @"symbology": code.symbologyName,
@@ -94,6 +103,29 @@ static inline NSDictionary<NSString *, id> *dictionaryFromQuadrilateral(SBSQuadr
     if (self.onScan) {
         self.onScan(dictionaryFromScanSession(session));
     }
+    dispatch_semaphore_wait(self.didScanSemaphore, DISPATCH_TIME_FOREVER);
+    if (self.shouldStop) {
+        [session stopScanning];
+    } else if (self.shouldPause) {
+        [session pauseScanning];
+    } else {
+        for (NSNumber *index in self.codesToReject) {
+            if (index.integerValue == -1) {
+                continue;
+            }
+            SBSCode *code = session.newlyRecognizedCodes[index.integerValue];
+            [session rejectCode:code];
+        }
+    }
+}
+
+- (void)finishOnScanCallbackShouldStop:(BOOL)shouldStop
+                           shouldPause:(BOOL)shouldPause
+                         codesToReject:(NSArray<NSNumber *> *)codesToReject {
+    self.shouldStop = shouldStop;
+    self.shouldPause = shouldPause;
+    self.codesToReject = codesToReject;
+    dispatch_semaphore_signal(self.didScanSemaphore);
 }
 
 @end
