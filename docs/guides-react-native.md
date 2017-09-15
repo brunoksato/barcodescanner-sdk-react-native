@@ -5,9 +5,9 @@ Overview         			{#react-native-guides}
 ## API Reference
 
 
-| {@link Scandit.BarcodePicker BarcodePicker} | {@link Scandit.ScanOverlay ScanOverlay}             | {@link Scandit.Barcode Barcode}                 |
+| {@link Scandit.BarcodePicker BarcodePicker} | {@link Scandit.SymbologySettings SymbologySettings} | {@link Scandit.Barcode Barcode}                 |
 |---------------------------------------------|-----------------------------------------------------|-------------------------------------------------|
-| {@link Scandit.ScanSettings ScanSettings}   | {@link Scandit.SymbologySettings SymbologySettings} | {@link Scandit.ScanSession ScanSession}         |
+| {@link Scandit.ScanSettings ScanSettings}   |     {@link Scandit.ScanSession ScanSession}         |                                                 |
 
 
 ## Getting Started
