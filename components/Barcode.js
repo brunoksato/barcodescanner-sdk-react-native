@@ -32,7 +32,7 @@ Barcode.Symbology = {
   GS1_DATABAR_LIMITED: "databar-limited",
   GS1_DATABAR_EXPANDED: "databar-expanded",
   CODABAR: "codabar",
-  AZTEC: "aztec",DOTCODE: "dotcode",
+  AZTEC: "aztec",
   MAXICODE: "maxicode",
   FIVE_DIGIT_ADD_ON: "five-digit-add-on",
   TWO_DIGIT_ADD_ON: "two-digit-add-on",
