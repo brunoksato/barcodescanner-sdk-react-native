@@ -65,5 +65,3 @@ export default class SimpleSample extends Component {
   }
 
 }
-
-AppRegistry.registerComponent('SimpleSample', () => SimpleSample);

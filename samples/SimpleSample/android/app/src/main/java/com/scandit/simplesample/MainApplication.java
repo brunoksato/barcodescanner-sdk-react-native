@@ -1,4 +1,4 @@
-package com.simplesample;
+package com.scandit.simplesample;
 
 import android.app.Application;
 

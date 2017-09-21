@@ -1,4 +1,4 @@
-package com.simplesample;
+package com.scandit.simplesample;
 
 import com.facebook.react.ReactActivity;
 
