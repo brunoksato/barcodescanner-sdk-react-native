@@ -1,8 +1,9 @@
 package com.scandit.reactnative
 
 import android.graphics.Color
+import android.os.Handler
+import android.os.Message
 import android.util.Log
-import android.view.View
 import com.facebook.react.bridge.*
 import com.facebook.react.common.MapBuilder
 import com.facebook.react.uimanager.SimpleViewManager
@@ -15,15 +16,21 @@ import com.scandit.barcodepicker.ocr.RecognizedText
 import com.scandit.barcodepicker.ocr.TextRecognitionListener
 import java.util.concurrent.CountDownLatch
 
-class BarcodePicker : SimpleViewManager<BarcodePicker>(), OnScanListener, TextRecognitionListener, View.OnLayoutChangeListener {
+class BarcodePicker : SimpleViewManager<BarcodePicker>(), OnScanListener, TextRecognitionListener {
+
+    class LoopHandler(val ref: BarcodePicker?) : Handler() {
+
+        override fun handleMessage(msg: Message?) {
+            Log.e("ABRAX", "looper looping")
+            ref?.postInvalidate()
+            ref?.requestLayout()
+            this.sendEmptyMessageDelayed(0, 60)
+        }
+    }
 
     private var picker: BarcodePicker? = null
     private var latch: CountDownLatch = CountDownLatch(1)
     private val codesToReject = ArrayList<Int>()
-
-    override fun onLayoutChange(p0: View?, p1: Int, p2: Int, p3: Int, p4: Int, p5: Int, p6: Int, p7: Int, p8: Int) {
-        Log.e("ABRAX", "New layout $p1 $p2 $p3 $p4")
-    }
 
     override fun getName(): String = "BarcodePicker"
 
@@ -53,7 +60,10 @@ class BarcodePicker : SimpleViewManager<BarcodePicker>(), OnScanListener, TextRe
 
     override fun receiveCommand(root: BarcodePicker?, commandId: Int, args: ReadableArray?) {
         when (commandId) {
-            COMMAND_START_SCANNING -> root?.startScanning()
+            COMMAND_START_SCANNING -> {
+                root?.startScanning()
+                LoopHandler(picker).sendEmptyMessageDelayed(0, 60)
+            }
             COMMAND_STOP_SCANNING -> root?.stopScanning()
             COMMAND_RESUME_SCANNING -> root?.resumeScanning()
             COMMAND_PAUSE_SCANNING -> root?.pauseScanning()
@@ -79,7 +89,6 @@ class BarcodePicker : SimpleViewManager<BarcodePicker>(), OnScanListener, TextRe
         picker = BarcodePicker(reactContext, ScanSettings.create())
         picker?.setOnScanListener(this)
         picker?.setTextRecognitionListener(this)
-        picker?.addOnLayoutChangeListener(this)
         return picker as BarcodePicker
     }
 
