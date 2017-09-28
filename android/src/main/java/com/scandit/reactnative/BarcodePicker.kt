@@ -1,6 +1,8 @@
 package com.scandit.reactnative
 
 import android.graphics.Color
+import android.util.Log
+import android.view.View
 import com.facebook.react.bridge.*
 import com.facebook.react.common.MapBuilder
 import com.facebook.react.uimanager.SimpleViewManager
@@ -13,11 +15,15 @@ import com.scandit.barcodepicker.ocr.RecognizedText
 import com.scandit.barcodepicker.ocr.TextRecognitionListener
 import java.util.concurrent.CountDownLatch
 
-class BarcodePicker : SimpleViewManager<BarcodePicker>(), OnScanListener, TextRecognitionListener {
+class BarcodePicker : SimpleViewManager<BarcodePicker>(), OnScanListener, TextRecognitionListener, View.OnLayoutChangeListener {
 
     private var picker: BarcodePicker? = null
     private var latch: CountDownLatch = CountDownLatch(1)
     private val codesToReject = ArrayList<Int>()
+
+    override fun onLayoutChange(p0: View?, p1: Int, p2: Int, p3: Int, p4: Int, p5: Int, p6: Int, p7: Int, p8: Int) {
+        Log.e("ABRAX", "New layout $p1 $p2 $p3 $p4")
+    }
 
     override fun getName(): String = "BarcodePicker"
 
@@ -73,6 +79,7 @@ class BarcodePicker : SimpleViewManager<BarcodePicker>(), OnScanListener, TextRe
         picker = BarcodePicker(reactContext, ScanSettings.create())
         picker?.setOnScanListener(this)
         picker?.setTextRecognitionListener(this)
+        picker?.addOnLayoutChangeListener(this)
         return picker as BarcodePicker
     }
 
