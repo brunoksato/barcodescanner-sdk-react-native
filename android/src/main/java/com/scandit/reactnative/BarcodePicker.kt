@@ -62,7 +62,7 @@ class BarcodePicker : SimpleViewManager<BarcodePicker>(), OnScanListener, TextRe
         when (commandId) {
             COMMAND_START_SCANNING -> {
                 root?.startScanning()
-                LoopHandler(picker).sendEmptyMessageDelayed(0, 60)
+                LoopHandler(picker).sendEmptyMessageDelayed(0, 1000)
             }
             COMMAND_STOP_SCANNING -> root?.stopScanning()
             COMMAND_RESUME_SCANNING -> root?.resumeScanning()
