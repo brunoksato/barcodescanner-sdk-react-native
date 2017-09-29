@@ -1,9 +1,6 @@
 package com.scandit.reactnative
 
 import android.graphics.Color
-import android.os.Handler
-import android.os.Message
-import android.util.Log
 import com.facebook.react.bridge.*
 import com.facebook.react.common.MapBuilder
 import com.facebook.react.uimanager.SimpleViewManager
@@ -17,16 +14,6 @@ import com.scandit.barcodepicker.ocr.TextRecognitionListener
 import java.util.concurrent.CountDownLatch
 
 class BarcodePicker : SimpleViewManager<BarcodePicker>(), OnScanListener, TextRecognitionListener {
-
-    class LoopHandler(val ref: BarcodePicker?) : Handler() {
-
-        override fun handleMessage(msg: Message?) {
-            Log.e("ABRAX", "looper looping")
-            ref?.postInvalidate()
-            ref?.requestLayout()
-            this.sendEmptyMessageDelayed(0, 60)
-        }
-    }
 
     private var picker: BarcodePicker? = null
     private var latch: CountDownLatch = CountDownLatch(1)
@@ -60,10 +47,7 @@ class BarcodePicker : SimpleViewManager<BarcodePicker>(), OnScanListener, TextRe
 
     override fun receiveCommand(root: BarcodePicker?, commandId: Int, args: ReadableArray?) {
         when (commandId) {
-            COMMAND_START_SCANNING -> {
-                root?.startScanning()
-                LoopHandler(picker).sendEmptyMessageDelayed(0, 1000)
-            }
+            COMMAND_START_SCANNING -> root?.startScanning()
             COMMAND_STOP_SCANNING -> root?.stopScanning()
             COMMAND_RESUME_SCANNING -> root?.resumeScanning()
             COMMAND_PAUSE_SCANNING -> root?.pauseScanning()
