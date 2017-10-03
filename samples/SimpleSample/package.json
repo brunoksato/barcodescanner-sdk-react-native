@@ -9,7 +9,7 @@
 	"dependencies": {
 		"react": "16.0.0-alpha.12",
 		"react-native": "0.47.1",
-		"react-native-scandit": "git+ssh://git@gitlab.scandit.com:mobile/react-native.git"
+		"react-native-scandit": "https://github.com/Scandit/barcodescanner-sdk-react-native.git"
 	},
 	"devDependencies": {
 		"babel-preset-react-native": "2.1.0",
