@@ -48,7 +48,7 @@ Copy it to <directory_of_your_project>/android/libs, then in your main build.gra
 - Drag and drop ScanditBarcodeScanner.framework inside the Framework folder in Xcode (in the dialog, choose **not** to copy items).
 - From the Finder, go to ScanditBarcodeScanner.framework/Resources and drag and drop ScanditBarcodeScanner.bundle inside the Framework folder in Xcode (again choose **not** to copy items).
 - In Xcode, select your project in the Navigator, then select the app target and in the "Linked Frameworks and Libraries" section delete the greyed out libRCTScanditBarcodeScanner.a and link it again via the plus button.
-- Go to "Build Settings", search "Framework Search Path" and add the following search path $(PROJECT_DIR)/ScanditSDK.
+- Go to "Build Settings", search "Framework Search Path" and add the following search path "$(PROJECT_DIR)/ScanditSDK".
 
 ## Instantiate and configure the barcode picker
 
